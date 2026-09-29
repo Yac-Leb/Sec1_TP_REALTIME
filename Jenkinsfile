@@ -71,9 +71,14 @@ pipeline {
 
         stage('SonarQube') {
             steps {
-                echo 'TODO: configure SonarQube Scanner / server credentials.'
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
             }
-        }
+        }   
 
         stage('Quality Gate') {
             steps {
