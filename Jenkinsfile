@@ -48,7 +48,8 @@ pipeline {
                 sh '''
                     docker compose run --no-deps --rm \
                     -e RUN_INTEGRATION_TESTS=true \
-                    -e KAFKA_BOOTSTRAP_SERVERS=kafka:29092 \
+                    --add-host=host.docker.internal:host-gateway \
+                    -e KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 \
                     sales-api pytest tests/integration -v
                 '''
             }
