@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         PYTHON = 'python3'
-        RUN_INTEGRATION_TESTS = 'false'
-        RUN_E2E_TESTS = 'false'
+        RUN_INTEGRATION_TESTS = 'true'
+        RUN_E2E_TESTS = 'true'
     }
 
     stages {
@@ -42,7 +42,6 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 sh '''
-                    echo "TODO: enable integration tests after configuring Kafka."
                     python3 -m pytest tests/integration
                 '''
             }
@@ -57,7 +56,6 @@ pipeline {
         stage('E2E Tests') {
             steps {
                 sh '''
-                    echo "TODO: students must activate the complete E2E scenario."
                     python3 -m pytest tests/e2e
                 '''
             }
