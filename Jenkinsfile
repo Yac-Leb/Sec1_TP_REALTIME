@@ -64,7 +64,7 @@ pipeline {
         stage('E2E Tests') {
             steps {
                 sh '''
-                    python3 -m pytest tests/e2e
+                    .venv/bin/python -m pytest tests/e2e
                 '''
             }
         }
