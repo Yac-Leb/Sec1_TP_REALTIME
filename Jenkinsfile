@@ -46,9 +46,9 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 sh '''
-                    docker compose run --no-deps --rm \
+                    docker compose run --rm --no-deps \
+                    --add-host host.docker.internal:host-gateway \
                     -e RUN_INTEGRATION_TESTS=true \
-                    --add-host=host.docker.internal:host-gateway \
                     -e KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 \
                     sales-api pytest tests/integration -v
                 '''
