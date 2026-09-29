@@ -46,7 +46,7 @@ def find_order_in_postgres(order_id):
 def test_sales_pipeline():
 
     response = httpx.post(
-        "http://localhost:8000/api/orders",
+        "http://sales-api:8000/api/orders",
         json={
             "customer_id": "C100",
             "product_id": "P001",
