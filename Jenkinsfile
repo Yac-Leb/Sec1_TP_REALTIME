@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh '''
                     docker compose build sales-api
-                    docker compose run --rm sales-api \
+                    docker compose run --no-deps --rm sales-api \
                     pytest tests/unit -v \
                     --cov=app \
                     --cov-report=term-missing
