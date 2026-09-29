@@ -46,7 +46,10 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 sh '''
-                    .venv/bin/python -m pytest tests/integration
+                    docker compose run --no-deps --rm \
+                    -e RUN_INTEGRATION_TESTS=true \
+                    -e KAFKA_BOOTSTRAP_SERVERS=kafka:29092 \
+                    sales-api pytest tests/integration -v
                 '''
             }
         }
