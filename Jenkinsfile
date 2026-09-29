@@ -46,7 +46,7 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 sh '''
-                    python3 -m pytest tests/integration
+                    .venv/bin/python -m pytest tests/integration
                 '''
             }
         }
