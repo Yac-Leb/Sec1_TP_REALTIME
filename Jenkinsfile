@@ -34,9 +34,10 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh '''
-                    .venv/bin/python -m pytest tests/unit \
+                    docker compose build sales-api
+                    docker compose run --rm sales-api \
+                    pytest tests/unit -v \
                     --cov=app \
-                    --cov-report=xml:coverage.xml \
                     --cov-report=term-missing
                 '''
             }
