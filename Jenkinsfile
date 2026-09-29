@@ -24,17 +24,20 @@ pipeline {
 
         stage('Install') {
             steps {
-                sh 'python3 -m pip install --user -r requirements.txt'
+                sh '''
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Unit Tests') {
             steps {
                 sh '''
-                    python3 -m pytest tests/unit \
-                      --cov=app \
-                      --cov-report=xml:coverage.xml \
-                      --cov-report=term-missing
+                    .venv/bin/python -m pytest tests/unit \
+                    --cov=app \
+                    --cov-report=xml:coverage.xml \
+                    --cov-report=term-missing
                 '''
             }
         }
